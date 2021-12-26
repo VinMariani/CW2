@@ -1,11 +1,13 @@
-from flask import Flask, request, Response
-import json
+from flask import Flask, render_template, request, Response
+from defs import load_data
+
+posts, comments, bookmarks = load_data()
 
 app = Flask(__name__)
 
 @app.route("/")
 def user_page():
-    pass
+    return render_template("index.html", posts=posts)
 
 @app.route("posts/<postid")
 def post():
