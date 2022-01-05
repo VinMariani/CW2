@@ -29,16 +29,16 @@
         <div class="item__top">
           <a href="/user-feed.html" class="item__head">
             <div class="item__ava-wrap">
-              <img src="/static/img/ava1.png" alt="" class="item__ava" width="47">
+              <img src={{post.poster_avatar}} alt="" class="item__ava" width="47">
             </div>
-            <span class="item__username">Username</span>
+            <span class="item__username">{{posts.poster_name}}</span>
           </a>
           <button type="button" class="item__bookmark-btn">
             <img src="/static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
           </button>
         </div>
         <a href="" class="item__post-link">
-          <img src="/static/img/post1.jpg" alt="" width="348" class="item__post-img">
+          <img src={{post.pic}} alt="" width="348" class="item__post-img">
         </a>
         <div class="item__descr">
           <p class="item__text">
@@ -49,7 +49,7 @@
         </div>
         <div class="item__bottom">
           <div class="item__post-info">
-            <p class="item__comments-counter">3 комментария</p>
+            <p class="item__comments-counter">{{post.comment_count}} комментария</p>
             <div class="item__counter">
               <img src="/static/img/eye.png" alt="" class="item__counter-icon" width="26">
               <span class="item__counter-text">1023</span>
@@ -57,13 +57,13 @@
           </div>
           <div class="item__comments">
             <p class="item__comment">
-              <b>user 1:</b> комментарий пользователя который его оставил
+              <b>{{posts.poster_name}}:</b> комментарий пользователя который его оставил
             </p>
             <p class="item__comment">
-              <b>user 2:</b> еще один комментарий
+              <b>{{posts.poster_name}}:</b> еще один комментарий
             </p>
             <p class="item__comment">
-              <b>user 3:</b> и&nbsp;какой-то коммент еще
+              <b>{{posts.poster_name}}:</b> и&nbsp;какой-то коммент еще
             </p>
           </div>
           <form action="/" class="item__comment-form comment-form">

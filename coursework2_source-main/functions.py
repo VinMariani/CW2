@@ -1,8 +1,7 @@
 import json
 from pprint import pprint
 
-
-def load_data():
+def load_data(): #читаем файлы json
     with open("data/posts.json", "r", encoding='utf-8') as fp:
         posts = json.load(fp)
 
@@ -40,6 +39,4 @@ def tags(content):
             words[i] = link
 
     return " ".join(words)
-
-
-pprint(tags("#еда #закат"))
+    pprint(tags("#еда #закат"))
