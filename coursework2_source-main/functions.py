@@ -1,36 +1,36 @@
 import json
-from pprint import pprint
 
-def load_data(): #читаем файлы json
+
+def load_data():
+    '''читаем файлы json'''
     with open("data/posts.json", "r", encoding='utf-8') as fp:
-        posts = json.load(fp)
+        all_posts = json.load(fp)
 
     with open("data/comments.json", "r", encoding='utf-8') as fp:
         comments = json.load(fp)
 
-    posts = add_comments_to_posts(comments, posts)
+    all_posts = combine_posts(comments, all_posts)
 
-    with open("data/bookmarks.json", "r", encoding='utf-8') as fp:
-        bookmarks = json.load(fp)
-
-    return posts, comments, bookmarks
+    return all_posts, comments
 
 
-def add_comments_to_posts(comments, posts):
-    for i, post in enumerate(posts):
+def combine_posts(comments, all_posts):
+    '''добавляем комментарии и тэги к посту'''
+    for i, post in enumerate(all_posts):
         pk = post.get("pk")
         post_comments = []
         for comment in comments:
             if comment.get("post_id") == pk:
                 post_comments.append(comment)
-        posts[i]["comment_count"] = len(post_comments)
+        all_posts[i]["comments"] = post_comments  # добавляем комментарии к постам
+        all_posts[i]["comments_count"] = len(post_comments)  # добавляем счетчик комментариев к постам
+        all_posts[i]["content"] = tags_in_posts(all_posts[i]["content"])  # пост с тэгами
 
-        posts[i]['content'] = tags(posts[i]['content'])
-
-    return posts
+    return all_posts
 
 
-def tags(content):
+def tags_in_posts(content):
+    '''ищем тэги в тексте поста'''
     words = content.split(" ")
     for i, word in enumerate(words):
         if word.startswith("#"):
@@ -39,4 +39,20 @@ def tags(content):
             words[i] = link
 
     return " ".join(words)
-    pprint(tags("#еда #закат"))
+
+
+def get_all_posts_by_tag(tag):
+    '''получаем все посты по тэгу'''
+    results = []
+    for post in all_posts:
+        if f'#{tag}' in post['content']:
+            results.append(post)
+    return results
+
+def search(word):
+    '''поиск постов по слову'''
+    posts = []
+    posts_count = len(posts)
+    for i in all_posts:
+        if word in posts['content']:
+            posts.append(posts['content'])
