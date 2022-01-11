@@ -1,6 +1,6 @@
 import json
 from flask import Flask, render_template, request
-from functions import load_data, get_all_posts_by_tag, search
+from functions import load_data, get_all_posts_by_tag, search_for_posts, get_post_by_pk, user_page
 
 all_posts, comments = load_data()
 
@@ -13,33 +13,27 @@ def feed_page():
     pass
 
 
-@app.route("/posts/<int:post_id>")  # просмотр поста
-def posts():
-    return render_template("post.html")
-    pass
+@app.route("/posts/<int:post_pk>")  # просмотр поста по его номеру
+def page_post(post_pk):
+    post = get_post_by_pk(all_posts, post_pk)
+    return render_template("post.html", post=post)
 
-@app.route("/tag/<tag>") # посты по тэгу
+
+
+@app.route("/tag/<tag>")  # посты по тэгу
 def page_tag(tag):
-    tag = request.args.get("tag")
-    posts_with_tags = get_all_posts_by_tag(tag)
-    return render_template('tag.html', tag=tag, posts_with_tags=posts_with_tags)
+    posts = get_all_posts_by_tag(all_posts, tag)
+    return render_template('tag.html', tag=tag, posts=posts)
 
 
-@app.route("/search/<word>")  # поиск
-def search(word):
-    return render_template('search.html', all_posts=all_posts, posts_count=len(posts), posts=posts)
+@app.route("/search/<word>")  # поиск поста
+def page_search(word):
+    posts = search_for_posts(all_posts, word)
+    return render_template('search.html', posts=posts, posts_count=len(posts))
 
 
 @app.route("/users/<username>")  # вывод по пользователю
 def username_page(username):
-    for post in posts:
-        pass
-        # if posts['poster_name'] ==
-
-    return render_template('user-feed.html')
-
-    # Выведите те посты у которых poster name соответствует username из запроса.
-    # Используйте шаблон user-feed
-
-
+    posts = user_page(all_posts, username)
+    return render_template('user-feed.html', posts=posts, username=username)
 app.run()

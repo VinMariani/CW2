@@ -31,7 +31,7 @@
             <div class="item__ava-wrap">
               <img src={{post.poster_avatar}} alt="" class="item__ava" width="47">
             </div>
-            <span class="item__username">{{posts.poster_name}}</span>
+            <span class="item__username">{{post.poster_name}}</span>
           </a>
           <button type="button" class="item__bookmark-btn">
             <img src="/static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
@@ -55,17 +55,15 @@
               <span class="item__counter-text">{{post.views_count}}</span>
             </div>
           </div>
+
           <div class="item__comments">
+            {% for comment in post.comments %}
             <p class="item__comment">
-              <b>{{posts.poster_name}}:</b> комментарий пользователя который его оставил
+              <b>{{comment.commenter_name}}:</b> {{comment.comment}}
             </p>
-            <p class="item__comment">
-              <b>{{posts.poster_name}}:</b> еще один комментарий
+            {% endfor %}
             </p>
-            <p class="item__comment">
-              <b>{{posts.poster_name}}:</b> и&nbsp;какой-то коммент еще
-            </p>
-            </p>
+
           </div>
           <form action="/" class="item__comment-form comment-form">
             <div class="comment-form__input-wrap">

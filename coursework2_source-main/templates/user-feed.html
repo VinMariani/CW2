@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SKYPROGRAM user feed</title>
-  <link href="{{post.pic}}" alt="" width="348" class="item__post-img">
+  <link href="{{posts.pic}}" alt="" width="348" class="item__post-img">
 </head>
 
 <body>
@@ -30,24 +30,24 @@
         <div class="item__top">
           <a href="/user-feed.html" class="item__head">
             <div class="item__ava-wrap">
-              <img src="{{post.poster_avatar}}" alt="" class="item__ava" width="47">
+              <img src="{{posts.poster_avatar}}" alt="" class="item__ava" width="47">
             </div>
             <span class="item__username">{{post.poster_name}}</span>
           </a>
         </div>
         <a href="/post.html" class="item__post-link">
-          <img src="{{post.pic}}" alt="" width="348" class="item__post-img">
+          <img src="{{posts.pic}}" alt="" width="348" class="item__post-img">
         </a>
-        <p class="item__descr"><a href="#" class="item__tag">#food</a> {{post.content|safe}}</p>
+        <p class="item__descr"><a href="#" class="item__tag">#food</a> {{posts.content|safe}}</p>
         <div class="item__post-info">
-          <p class="item__comments-counter">{{post.comments_count}} комментариев</p>
+          <p class="item__comments-counter">{{posts.comments_count}} комментариев</p>
           <div class="item__counter">
             <img src="/static/img/eye.png" alt="" class="item__counter-icon" width="26">
-            <span class="item__counter-text">{{post.views_count}}</span>
+            <span class="item__counter-text">{{posts.views_count}}</span>
           </div>
         </div>
         <div class="item__post-bottom">
-          <a href="/posts/{{post.pk}}" class="item__btn-more">Подробнее</a>
+          <a href="/posts/{{posts.pk}}" class="item__btn-more">Подробнее</a>
           <button type="button" class="item__bookmark-btn">
             <img src="/static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
           </button>

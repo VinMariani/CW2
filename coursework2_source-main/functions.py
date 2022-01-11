@@ -1,4 +1,5 @@
 import json
+import pprint
 
 
 def load_data():
@@ -41,7 +42,7 @@ def tags_in_posts(content):
     return " ".join(words)
 
 
-def get_all_posts_by_tag(tag):
+def get_all_posts_by_tag(all_posts, tag):
     '''получаем все посты по тэгу'''
     results = []
     for post in all_posts:
@@ -49,10 +50,25 @@ def get_all_posts_by_tag(tag):
             results.append(post)
     return results
 
-def search(word):
+
+def search_for_posts(all_posts, word):
     '''поиск постов по слову'''
     posts = []
-    posts_count = len(posts)
-    for i in all_posts:
-        if word in posts['content']:
-            posts.append(posts['content'])
+    for post in all_posts:
+        if word in post['content']:
+            posts.append(post)
+    return posts
+
+
+def get_post_by_pk(all_posts, pk):
+    for post in all_posts:
+        if post['pk'] == pk:
+            return post
+
+def user_page(all_posts, username):
+    '''все посты пользователя'''
+    posts = []
+    for post in all_posts:
+        if post['poster_name'] == username:
+            posts.append(post)
+    return posts
