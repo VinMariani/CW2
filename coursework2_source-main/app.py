@@ -19,7 +19,6 @@ def page_post(post_pk):
     return render_template("post.html", post=post)
 
 
-
 @app.route("/tag/<tag>")  # посты по тэгу
 def page_tag(tag):
     posts = get_all_posts_by_tag(all_posts, tag)
