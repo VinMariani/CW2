@@ -65,6 +65,7 @@ def get_post_by_pk(all_posts, pk):
         if post['pk'] == pk:
             return post
 
+
 def user_page(all_posts, username):
     '''все посты пользователя'''
     posts = []
