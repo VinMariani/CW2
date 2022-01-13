@@ -26,7 +26,9 @@
     <form action="/search/" class="search__form">
         <input type="search" class="search__input" name="word">
         <br>
-        <input type="submit" value="Найти" class="button">
+        <form action="/">
+            <button>Найти</button>
+        </form>
     </form>
     <section class="items">
         {% for post in all_posts %}
