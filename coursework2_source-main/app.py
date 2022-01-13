@@ -25,9 +25,13 @@ def page_tag(tag):
     return render_template('tag.html', tag=tag, posts=posts)
 
 
-@app.route("/search/<word>")  # поиск поста
-def page_search(word):
-    posts = search_for_posts(all_posts, word)
+@app.route("/search/")  # поиск поста
+def page_search():
+    word = request.args.get('word')
+    if word:
+        posts = search_for_posts(all_posts, word)
+    else:
+        posts = all_posts
     return render_template('search.html', posts=posts, posts_count=len(posts))
 
 
@@ -35,4 +39,6 @@ def page_search(word):
 def username_page(username):
     posts = user_page(all_posts, username)
     return render_template('user-feed.html', posts=posts, username=username)
+
+
 app.run()
