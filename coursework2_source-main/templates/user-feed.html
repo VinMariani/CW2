@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKYPROGRAM Страница пользователя</title>
     <link href="{{posts.pic}}" alt="" width="348" class="item__post-img">
+    <link href="/static/css/styles.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
 </header>
 <main class="container">
     <section class="items">
-        {% for post in all_posts %}
+        {% for post in posts %}
         <div class="items__item item">
             <div class="item__top">
                 <a href="/users/{{post.poster_name}}" class="item__head">
